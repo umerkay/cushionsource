@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:padding="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<style type="text/css">
+
+    body{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    /*  bhoechie tab */
+    div.bhoechie-tab-container{
+        z-index: 10;
+        background-color: #ffffff;
+        padding: 0 !important;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        border:1px solid #ddd;
+        margin-top: 20px;
+        margin-left: 50px;
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        background-clip: padding-box;
+        opacity: 0.97;
+        filter: alpha(opacity=97);
+    }
+    div.bhoechie-tab-menu{
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group{
+        margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a{
+        margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a .fa {
+        color: #5A55A3;
+    }
+    div.bhoechie-tab-menu div.list-group>a:first-child{
+        border-top-right-radius: 0;
+        -moz-border-top-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a:last-child{
+        border-bottom-right-radius: 0;
+        -moz-border-bottom-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active,
+    div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a.active .fa{
+        background-color: #1c6487;
+        background-image: #1c6487;
+        color: #ffffff;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active:after{
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        margin-top: -13px;
+        border-left: 0;
+        border-bottom: 13px solid transparent;
+        border-top: 13px solid transparent;
+        border-left: 10px solid #1c6487;
+    }
+
+    div.bhoechie-tab-content{
+        background-color: #ffffff;
+        /* border: 1px solid #eeeeee; */
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+
+    div.bhoechie-tab div.bhoechie-tab-content:not(.active){
+        display: none;
+    }
+    .side a{
+
+        font-size: 11px;
+        font-weight: 700;
+    }
+    /*For Button Group*/
+    .btn-group button {
+        background-color: #fff; /* Green background */
+        border: 1px solid black; /* Green border */
+        border-radius: 5px 0px 0px 5px;
+        padding: 9px 24px; /* Some padding */
+        cursor:  ; /* Pointer/hand icon */
+        float: left ; /* Float the buttons side by side */
+    }
+    .btn-group select {
+        background-color: #fff; /* Green background */
+        border: 1px 1px 1px 2px solid black; /* Green border */
+        border-radius: 0px 5px 5px 0px;
+        padding: 10px 24px; /* Some padding */
+        cursor: pointer; /* Pointer/hand icon */
+        float: left; /* Float the buttons side by side */
+    }
+
+    /* Clear floats (clearfix hack) */
+    .btn-group:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .btn-group button:not(:last-child) {
+        border-right: none; /* Prevent double borders */
+    }
+
+    /* Add a background color on hover */
+    .btn-group button:hover {
+        background-color: #b48484;
+    }
+    .divbox{
+        background-color: #d0dbe1; border: 2px; border-radius: 5px 5px 0px 0px; height: auto;
+    }
+    .divbox1 {
+        background-color:#e1e9ec; text-align: left; border-radius: 0px; height: auto;
+    }
+    .divbox a{
+        text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
+    }
+    .divbox1 a{
+        text-decoration: none; color: #000000; font-size: 11px; font-weight: 800; height: auto;
+    }
+    .divbox2{
+        background-color:#fff; text-align: left; height: auto;
+    }
+    .divbox2 p{
+        text-decoration: none; color: #000000; font-size: 11px; font-weight: 800; height: auto;
+    }
+    .qntybtn{width: 80px;border-radius: 6px;padding: 8px;border: 1px solid #808080c9;float: right;color: black;
+    }
+    .textsize{color: darkgray;font-size: 15px;}
+    .checkoutbtn{
+        width: 100%; background-color: #1c6487; font-weight: 700;
+        padding: 10px;
+    }
+    .qntybtn1{
+        width: 68px;border:1px solid #808080c9;float: right;color: black;border-radius: 1px; border-radius: 3px;
+    }
+    .sub1, .sub2 { display: none; }
+
+    :checked ~ .sub1, :checked ~ .sub2 {
+        display: block;
+        margin-left: 15px;
+        font-size: 12px;
+    }
+    .qntybtn12{
+        width: 55px;
+        border: 1px solid #808080c9;
+        margin-left: 10px;
+        color: black;
+    }
+    .carttotal{
+        width: 100%;
+        background-color: #d0dbe1;text-align: left
+    }
+</style>
+<body>
+
+
+
+<div class="container" style="border-bottom: 1px solid grey;">
+    <h4>My Shopping Cart</h4>
+    <div class="row" >
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+            <div class="row"  style="background-color:#d0dbe1; padding-top: 8px;">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group"><span>Payement Summery</span></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group"><span>Price</span><span style="padding-left: 25px;">QTY</span></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group"><span style="float: right;">Total</span></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <br>
+                    <div class="form-group">
+                        <div class=" divbox2" ><p><strong>Image</strong></p></div>
+                        <div class=" divbox2" ><p><strong>Style:</strong></p></div>
+                        <div class="divbox2" ><p><strong>Shape:</strong></p></div>
+                        <div class="divbox2"><p><strong>Front Corners:</strong></p></div>
+                        <div class="divbox2"><p><strong>Back Corners:</strong></p></div>
+                        <div class="divbox2"><p><strong>Width:</strong></p></div>
+                        <div class="divbox2"><p><strong>Depth:</strong></p></div>
+                        <div class="divbox2"><p><strong>Thickness:</strong></p></div>
+                        <div class="divbox2"><p><strong>Fabric:</strong></p></div>
+                        <div class="divbox2"><p><strong>Filt:</strong></p></div>
+                        <div class="divbox2"><p><strong>Tufting:</strong></p></div>
+                        <div class="divbox2"><p><strong>Closure:</strong></p></div>
+                        <div class="divbox2"><p><strong>Ties:</strong></p></div>
+                        <div class="divbox2"><p><strong>Ties:</strong></p></div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <br>
+                    <div class="form-group">
+                        <div class=" divbox2" ><span>$65.5</span><span><input type="number" class="btn  qntybtn12"></span></div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <br>
+                    <div class="form-group" style="float: right;">
+                        <div class=" divbox2" ><p><strong>$897.45</strong></p></div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-8 col-xs-9 ">
+            <div class="row" style="padding-left: 10px;">
+                <button class="btn " style="width: 100%;background-color: #1c6487; color: white; font-weight: bold; padding-top: 10px;">SECURE CHECKOUT<span class="glyphicon glyphicon-chevron-right" ></span></button>
+                <br>
+            </div>
+            <div class="row" style="padding-left: 10px;">
+                <span style="text-align: center;"> or checkout using</span>
+            </div>
+            <div class="row" style="padding-left: 10px;">
+                <br><br>
+                <button class="btn " style="width: 100%;background-color: #d0dbe1; color: white; font-weight: bold; padding-top: 10px;"><img src="img/paypal.png" style="width: 90px;"><span class="glyphicon glyphicon-chevron-right" ></span></button>
+                <br>
+            </div>
+            <br>
+            <div class="row" style="padding-left: 10px;">
+                <button class="btn carttotal">Cart Totals</button>
+                    <div class="form-control divbox2" style="height:auto;border-bottom: 4px solid grey;
+"><br>
+                        <div ><span>Sub Total:</span><span style="float: right;">$654.6</span></div>
+                        <br>
+                        <div ><span>Taxes (estimated):</span><span style="float: right;">$00.0</span></div>
+                        <br>
+                        <div ><span>Shipping:</span><span style="float: right;">$00.0</span></div>
+                    </div>
+                <button class="btn  carttotal"><span>Total:</span><span style="float: right;">$658.0</span></button>
+
+            </div>
+            <br>
+            <!--<div class="row" style="padding-left: 10px;">-->
+                <!--<button class="btn carttotal">Estimate Shipping</button>-->
+                <!--<div class="form-control divbox2"style="height:auto;border-bottom:4px solid grey;">-->
+                    <!--<p><input type="text" style="width:40% "><input type="button"  style="width:20% "></p>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="border-bottom: 2px solid grey; border-top: 2px solid grey;">
+            <span ><a href="index.html" style="color: black;"><button style="margin-top: 10px;margin-bottom: 10px; float: left;"><span class="glyphicon glyphicon-chevron-left" style="color: #5f7a8c;"></span>Continue Shopping</button></a></span>
+            <span ><button style="margin-top: 10px;margin-bottom: 10px; float: right;"><img src="img/Icons/RESET.png" style="width: 21px;">Update Cart</button></span>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <p style="float: right">By proceeding to secure checkout you are agreeing to our Terms and Conditions
+            </p>
+        </div>
+    </div>
+<br>
+
+
+</div>
+
+
+</body>
+</html>

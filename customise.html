@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:padding="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!--<script src="js/bootstrap.min.js"></script>-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style type="text/css">
+  
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+      .loading {
+        position: fixed;
+        z-index: 50;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #f1f1f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+.loader {
+  -webkit-perspective: 120px;
+  -moz-perspective: 120px;
+  -ms-perspective: 120px;
+  perspective: 120px;
+  width: 100px;
+  height: 100px;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: #ff0000;
+  animation: flip 1s infinite;
+}
+#c {
+    width: 350px;
+    height: 350px;
+    max-width: 40%;
+    max-height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    outline: none;
+}
+
+/*  bhoechie tab */
+div.bhoechie-tab-container{
+  z-index: 10;
+  background-color: #ffffff;
+  padding: 0 !important;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  border:1px solid #ddd;
+  margin-top: 20px;
+  margin-left: 50px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  background-clip: padding-box;
+  opacity: 0.97;
+  filter: alpha(opacity=97);
+}
+div.bhoechie-tab-menu{
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a .glyphicon,
+div.bhoechie-tab-menu div.list-group>a .fa {
+  color: #5A55A3;
+}
+div.bhoechie-tab-menu div.list-group>a:first-child{
+  border-top-right-radius: 0;
+  -moz-border-top-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a:last-child{
+  border-bottom-right-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a.active,
+div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+div.bhoechie-tab-menu div.list-group>a.active .fa{
+  background-color: #1c6487;
+  background-image: #1c6487;
+  color: #ffffff;
+}
+div.bhoechie-tab-menu div.list-group>a.active:after{
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -13px;
+  border-left: 0;
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  border-left: 10px solid #1c6487;
+}
+
+div.bhoechie-tab-content{
+  background-color: #ffffff;
+  /* border: 1px solid #eeeeee; */
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+div.bhoechie-tab div.bhoechie-tab-content:not(.active){
+  display: none;
+}
+    .side a{
+
+        font-size: 11px;
+        font-weight: 700;
+    }
+    /*For Button Group*/
+.btn-group button {
+    background-color: #fff; /* Green background */
+    border: 1px solid black; /* Green border */
+    border-radius: 5px 0px 0px 5px;
+    padding: 9px 24px; /* Some padding */
+    cursor:  hand; /* Pointer/hand icon */
+    float: left ; /* Float the buttons side by side */
+}
+.btn-group select {
+    background-color: #fff; /* Green background */
+    border: 1px 1px 1px 2px solid black; /* Green border */
+    border-radius: 0px 5px 5px 0px;
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #b48484;
+}
+.divbox{
+   background-color: #d0dbe1; border: 2px; border-radius: 5px 5px 0px 0px; height: auto;
+}
+.divbox1 {
+  background-color:#e1e9ec; text-align: left; border-radius: 0px; height: auto;
+}
+.divbox a{
+text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
+}
+.divbox1 a{
+  text-decoration: none; color: #000000; font-size: 11px; font-weight: 800; height: auto;
+}
+.divbox2{
+  background-color:#fff; text-align: left; height: auto;
+}
+.divbox2 p{
+  text-decoration: none; color: #000000; font-size: 11px; font-weight: 800; height: auto;
+}
+.qntybtn{width: 80px;border-radius: 6px;padding: 8px;border: 1px solid #808080c9;float: right;color: black;
+    }
+.textsize{color: darkgray;font-size: 15px;}
+    .checkoutbtn{
+        width: 100%; background-color: #1c6487; font-weight: 700;
+        padding: 10px;
+    }
+    .qntybtn1{
+        width: 68px;border:1px solid #808080c9;float: right;color: black;border-radius: 1px; border-radius: 3px;
+    }
+.sub1, .sub2 { display: none; }
+
+:checked ~ .sub1, :checked ~ .sub2 {
+    display: block;
+    margin-left: 15px;
+    font-size: 12px;
+}
+</style>
+<body>
+
+
+
+<div class="container">
+  <div class="row">
+        <!-- <div class="col-lg-4 col-md-4 col-sm-8 col-xs-9 bhoechie-tab-container"> -->
+          <div class="col-lg-4 col-md-4 col-sm-8 col-xs-9 side ">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+              <div class="list-group">
+                  <a href="#" class="list-group-item active text-center" style="background-color: #e1e9ec; color: black;">
+                      <img src="img/Icons/style.png" style="width: 39px;"><br/>Style
+                  </a>
+                <a href="#" class="list-group-item  text-center" style="background-color: #e1e9ec; color: black;">
+                  <img src="img/Icons/Fabric.png" style="width: 39px;"><br/>FABRIC
+                </a>
+                <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black">
+                 <img src="img/Icons/Welting.png" style="width: 39px;"><br/>WELTING
+                </a>
+                <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                    <img src="img/Icons/Dimensions.png" style="width: 39px;"><br/>DIMENSIONS
+                </a>
+                <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                    <img src="img/Icons/Fill.png" style="width: 39px;"><br/>FILL
+                </a>
+                  <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                      <img src="img/Icons/Corner.png" style="width: 39px;"><br/>CORNER
+                  </a>
+                  <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                      <img src="img/Icons/Ties.png" style="width: 39px;"><br/>TIES
+                  </a>
+                  <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                      <img src="img/Icons/RESET.png" style="width: 39px;"><br/>RESET
+                  </a>
+              </div>
+            </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab" style="margin-left: -15px;">
+                <!-- flight section -->
+                    <div class="bhoechie-tab-content active" >
+
+                        <div class="form-group" id="inventory">
+                            <div class="form-control divbox"><a>Style Selection</a></div>
+                            </div>
+
+                    </div>
+                <div class="bhoechie-tab-content " >
+
+                      <div class="form-group">
+                          <div class="form-control divbox"><a>Fabric Selection</a></div>
+                          <button class="form-control divbox1" data-toggle="modal" data-target=".bd-example-modal-lg" onClick="activeOption=item.activeOption; $('#fabric-modal').modal('toggle')" ><span class="glyphicon glyphicon-th"></span>&nbsp<a>Choose different fabric</a></button>
+                          <button id="fabricColorDisplay" class="form-control divbox1"  style="background-image: url('img/fabric.png')">
+                          </button>
+                          <button class="form-control divbox1"><a>Optimal</a></button>
+                          <button class="form-control divbox1" style=" background-color: white;"><a>Create Custome Size <span class="glyphicon glyphicon-plus" style="float: right; padding-top: 0.5vw;"></span></a></button>
+                      </div>
+
+                </div>
+                <!-- style section -->
+                <div class="bhoechie-tab-content">
+
+                    <div class="form-control divbox" ><a>Welting</a></div>
+                    <button class="form-control divbox1" ><a>Welting Option</a><p style="color: red;">Measurements do not include the thickness of welting, which is approximately 1/4".</p>
+                        <span><img src="img/doublewelting.png" class="img-responsive" style="width: auto;">
+                            <input type="radio" name="welting" onchange="toggleChild('welting', true)"><label>	Double Welting</label>
+                            <div class="sub1"> 
+                            <div>
+                                <input type="radio" name="level1" value="D0" id="D0"/>
+                                <label for="D0">Match Main Fabric</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="level1" value="D1" id="D1"/>
+                                <label for="D1">Choose Different Fabric</label>
+                                
+                                </div>
+                        </div>
+                            <img src="img/nowelting.png" class="img-responsive"></span>
+
+                        <input type="radio" name="welting" onchange="toggleChild('welting', false)"><label>No Welting</label>
+
+                    </button>
+                   </div>
+    
+                <!-- Fabric section -->
+                <div class="bhoechie-tab-content">
+                    <div class="form-control divbox"><a >Dimension</a></div>
+                    <button class="form-control divbox1" >
+                        <p style="color: black;"> Width<input type="number" value="1" min="0.5" step="0.1" max="2" class="btn  qntybtn1" oninput="theModel.scale.set(this.value, theModel.scale.y, theModel.scale.z)"></p><br>
+                        <p style="color: black;">Depth<input type="number"  value="1" min="0.5" step="0.1" max="2" class="btn  qntybtn1" oninput="theModel.scale.set(theModel.scale.x, theModel.scale.y, this.value)"></p><br>
+                        <p style="color: black;">Thickness
+                            <select class="form-control" style="height: auto;"  value="1" min="0.5" step="0.1" max="2" class="btn  qntybtn1" oninput="theModel.scale.set(theModel.scale.x, 1 + this.value/10, theModel.scale.z)">
+                            <option value="1" selected="selected">1 inches</option>
+                            <option value="3" >3 inches (Most Popular)</option>
+                            <option value="4" class="form-control">4 inches</option>
+                            <option value="5" class="form-control">5 inches</option>
+                            <option value="6" class="form-control">6 inches</option>
+                            <option value="7" class="form-control">7 inches</option>
+                            <option value="8" class="form-control">8 inches</option>
+                        </select></p><br><br>
+                        <img src="img/dimension.png" style="width: 200px;" class="img-responsive">
+                    </button>
+
+                </div>
+                <div class="bhoechie-tab-content">
+
+                    <div class="form-control divbox"><a >Fill Selection</a></div>
+                    <button class="form-control divbox1" >
+                        <p><img src="img/cumuPlushinod.png" class="img-responsive">
+                            <input type="radio" name="foam"><label>CumuPlush<small>(Indoor/Outdoor)</small> </label>
+                            <img src="img/mediumfoam.jpg" class="img-responsive" style="    width: 124px;">
+                            <input type="radio" name="foam"><label>Medium Foam <small>(Indoor)</small></label>
+                            <img src="img/reticulated.jpg" class="img-responsive"></p>
+                        <input type="radio" name="foam"><label>	Reticulated Foam <small>(Indoor/Outdoor)</small></label>
+                    </button>
+
+                </div>
+                <div class="bhoechie-tab-content">
+
+                    <div class="form-control divbox" ><a>Corner Style</a></div>
+                    <button class="form-control divbox1">
+                        <img src="img/allsquarecorner.png" class="img-responsive" width="125">
+                        <input type="radio" name="cornerstyle"><label>All Squared
+                        <small>(Most Popular)</small></label>
+                        <img src="img/roundedbackcorner.png" class="img-responsive" width="125">
+                        <input type="radio" name="cornerstyle"><label>Rounded Back</label>
+                        <img src="img/frontrountcorner.png" class="img-responsive" width="125">
+                        <input type="radio" name="cornerstyle"><label>Rounded Front</label>
+                        <img src="img/allroundedcorner.png" class="img-responsive" width="125">
+                        <input type="radio" name="cornerstyle"><label>All Rounded</label>
+                        <p>Corners on main image will not change.</p>
+                    </button>
+
+
+                </div>
+                    <div class="bhoechie-tab-content">
+
+                        <div class="form-control divbox" ><a >Fabric Ties</a></div>
+                        <button class="form-control divbox1" >
+                            <img src="img/nonetie.png" class="img-responsive" width="100">
+                            <input type="radio" name="tie" oninput="toggleChild(['tie1', 'tie2', 'tie3', 'tie4'])"><label>None</label>
+                            <img src="img/standard.png" class="img-responsive" width="100">
+                            <input type="radio" name="tie" oninput="toggleChild(['tie1', 'tie2', 'tie3', 'tie4']); toggleChild(['tie1', 'tie2'], true);"><label>	Standard</label>
+                            <img src="img/double.png" class="img-responsive" width="100">
+                            <input type="radio" name="tie" oninput="toggleChild(['tie1', 'tie2', 'tie3', 'tie4'], true);"><label>	Double</label>
+                            <!-- <img src="img/side.png" class="img-responsive" width="100">
+                            <input type="radio" name="tie"><label>Side</label>
+                            <img src="img/inset.png" class="img-responsive" width="100">
+                            <input type="radio" name="tie"><label>Inset (4")</label> -->
+                        </button>
+
+                    </div>
+            </div>
+              <!--<div class="bhoechie-tab-content">-->
+                  <!--<div class="form-control divbox" >All Size are listed as interior dimensions in inch</div><br><br>-->
+                  <!--<div class="form-control divbox" >Not sure what size you need? <a href="#">let us help</a></div>-->
+              <!--</div>-->
+        </div>
+         <div class="col-lg-4 col-md-4 col-sm-8 col-xs-9 ">
+             <div class="bhoechie-tab-content active text-center" >
+
+                 <div class="form-group" style="font-size: 0.8rem; background-color: white;">
+                     <div class="btn-group ">
+                         <button>Side</button>
+                            <select name="children" id="children"></select>
+                     </div>
+                     <div class="btn-group ">
+                        <button>View</button>
+                           <select oninput="setAnimation(ViewAngles[this.value], 60, false)">
+                                <option value="front">Front</option>
+                                <option value="top">Top</option>
+                                <option value="right">Right</option>
+                                <option value="left">Left</option>
+                           </select>
+                    </div>
+
+                 </div>
+                 
+             </div>
+             <div class="bhoechie-tab-content active text-center" >
+
+                 <div class="form-group" style="font-size: 0.8rem; background-color: white;">
+                     <div class="btn-group ">
+                         <input type="range" min=-3.142 max=3.142 step="0.1" id="rotation">
+                     </div>
+
+                 </div>
+             </div>
+             <div class="bhoechie-tab-content active text-center" >
+                <canvas id="c"></canvas>
+             </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-8 col-xs-9 ">
+            <div class="bhoechie-tab-content active" >
+
+                <div class="form-group">
+                    <div class="form-control divbox2" style="height: auto;"><br><p><b class="textsize">Quantity:</b> <input type="number" class="btn  qntybtn"></p>
+                        <br><p><b class="textsize">Unit Price:</b> <span class="unitprice" style="float: right; color: black; font-weight: 700; text-align: center; margin-right: 10px;">$340</span></p>
+                        <br><p><b class="textsize">Sub Total:</b> <span class="unitprice" style="float: right; color: black; font-weight: 700; text-align: center; margin-right: 10px;">$740</span></p>
+                    </div>
+                    <a href="checkout.html" style="color: white;"><button class="btn  checkoutbtn">Checkout</button></a>
+                </div>
+
+            </div>
+        </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="fabric-modal">
+        <div style="padding: 1rem;">
+        <div class="modal-content" id="fabric-modal-content">
+            <button onClick="$('#fabric-modal').modal('toggle')" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+    </div>
+    
+    </div>
+</div>
+<div class="loading" id="js-loader">
+    <div class="loader"></div>
+  </div>
+
+</div>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
+
+    <!-- The main three.js file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.js"></script>
+    <!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- This is a simple to use extension for three.js that activates all the rotating, dragging and zooming controls we need for both mouse and touch, there isn't a clear CDN for this that I can find -->
+    <script src="OrbitControls.js"></script>
+    <script src="orbitcontrolfake.js"></script>
+    <script src="inventory.js"></script>
+<script src="script.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+    });
+});
+  // $(document).ready(function($){
+
+      $('.front-image').on({
+          'click': function(){
+              console.log(this)
+              $('#change-image').attr('src','img/front.jpg');
+          }
+      });
+
+      $('.back-image').on({
+          'click': function(){
+              $('#change-image').attr('src','img/back.jpg');
+          }
+      });
+
+      $('.left-image').on({
+          'click': function(){
+              $('#change-image').attr('src','img/left.jpg');
+          }
+      });
+
+      $('.right-image').on({
+          'click': function(){
+              $('#change-image').attr('src','img/right.jpg');
+          }
+      });
+  // });
+    buildItems(items);
+
+</script>
+</body>
+</html>

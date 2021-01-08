@@ -173,6 +173,10 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 .btn-group button:hover {
     background-color: #b48484;
 }
+.smol {
+    font-size: 0.1em;
+    padding: 0.1rem;
+}
 .divbox{
    background-color: #d0dbe1; border: 2px; border-radius: 5px 5px 0px 0px; height: auto;
 }
@@ -218,17 +222,28 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
 </style>
 <body>
 
-
-
 <div class="container">
+
+    <div id="customisations">
+        <!-- <div id="fabric" onclick="selectCustomisation(this.id)"></div>
+        <div id="welting"></div>    
+        <div id="dimensions"></div>     -->
+    </div>
+
+    <div id="cust-menu-fabric"></div>
+    <div id="cust-menu-welting"></div>
+    <div id="cust-menu-dimenstions"></div>
+
+    <!-- <div id="c"></div> -->
+
   <div class="row">
         <!-- <div class="col-lg-4 col-md-4 col-sm-8 col-xs-9 bhoechie-tab-container"> -->
           <div class="col-lg-4 col-md-4 col-sm-8 col-xs-9 side ">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
               <div class="list-group">
-                  <a href="#" class="list-group-item active text-center" style="background-color: #e1e9ec; color: black;">
+                <a href="#" class="list-group-item active text-center" style="background-color: #e1e9ec; color: black;">
                       <img src="img/Icons/style.png" style="width: 39px;"><br/>Style
-                  </a>
+                </a>
                 <a href="#" class="list-group-item  text-center" style="background-color: #e1e9ec; color: black;">
                   <img src="img/Icons/Fabric.png" style="width: 39px;"><br/>FABRIC
                 </a>
@@ -241,15 +256,21 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
                 <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
                     <img src="img/Icons/Fill.png" style="width: 39px;"><br/>FILL
                 </a>
-                  <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
-                      <img src="img/Icons/Corner.png" style="width: 39px;"><br/>CORNER
-                  </a>
-                  <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
-                      <img src="img/Icons/Ties.png" style="width: 39px;"><br/>TIES
-                  </a>
-                  <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
-                      <img src="img/Icons/RESET.png" style="width: 39px;"><br/>RESET
-                  </a>
+                <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                   <img src="img/Icons/Corner.png" style="width: 39px;"><br/>CORNER
+                </a>
+                <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                   <img src="img/Icons/Ties.png" style="width: 39px;"><br/>OTHER
+                </a>
+                <!-- <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                    <img src="img/Icons/ZIPPER.png" style="width: 39px;"><br/>ZIPPER
+                </a>
+                <a href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                    <img src="img/Icons/Button.png" style="width: 39px;"><br/>BUTTON
+                </a> -->
+                <a onclick="window.location.reload()" href="#" class="list-group-item text-center" style="background-color: #e1e9ec; color: black;">
+                    <img src="img/Icons/RESET.png" style="width: 39px;"><br/>RESET
+                </a>
               </div>
             </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab" style="margin-left: -15px;">
@@ -263,14 +284,49 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
                     </div>
                 <div class="bhoechie-tab-content " >
 
-                      <div class="form-group">
-                          <div class="form-control divbox"><a>Fabric Selection</a></div>
-                          <button class="form-control divbox1" data-toggle="modal" data-target=".bd-example-modal-lg" onClick="activeOption=item.activeOption; $('#fabric-modal').modal('toggle')" ><span class="glyphicon glyphicon-th"></span>&nbsp<a>Choose different fabric</a></button>
-                          <button id="fabricColorDisplay" class="form-control divbox1"  style="background-image: url('img/fabric.png')">
+                          <div class="form-control divbox"><a>Front Fabric Selection</a></div>
+                          <button class="form-control divbox1" data-toggle="modal" data-target=".bd-example-modal-lg" onClick="activeOption=item.frontOption; $('#fabric-modal').modal('toggle'); activeParam = 'frontOption';" ><span class="glyphicon glyphicon-th"></span>&nbsp<a>Choose different fabric</a></button>
+                          <button id="fabricColorDisplayfrontOption" class="form-control divbox1"  style="background-image: url('img/fabric.png')">
                           </button>
-                          <button class="form-control divbox1"><a>Optimal</a></button>
-                          <button class="form-control divbox1" style=" background-color: white;"><a>Create Custome Size <span class="glyphicon glyphicon-plus" style="float: right; padding-top: 0.5vw;"></span></a></button>
-                      </div>
+                          <!-- <button class="form-control divbox1"><a>Optimal</a></button> -->
+                          <!-- <button class="form-control divbox1" style=" background-color: white;"><a>Create Custome Size <span class="glyphicon glyphicon-plus" style="float: right; padding-top: 0.5vw;"></span></a></button> -->
+                        <div class="form-control divbox"><a>Back Fabric Selection</a></div>
+                        
+                        <div>
+                            <input type="radio" name="level1" value="D0" id="D0" onchange="item.mtlDependants.push(item.backOption); activeOption=item.backOption; showFabOpt('back', false); selectSwatch();"/>
+                            <label for="D0">Match Front Fabric</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="level1" value="D1" id="D1" onchange="item.mtlDependants = item.mtlDependants.filter(dep => dep !== item.backOption); showFabOpt('back', this.checked);"/>
+                            <label for="D1">Different Back Fabric</label>
+                            
+                            <div id="_sel-back-fab" style="display: none;">
+                                <button class="form-control divbox1" data-toggle="modal" data-target=".bd-example-modal-lg" onClick="activeOption=item.backOption; $('#fabric-modal').modal('toggle'); activeParam = 'backOption';" >
+                                    <span class="glyphicon glyphicon-th"></span>&nbsp<a>Choose different fabric</a>
+                                </button>
+                                <button id="fabricColorDisplaybackOption" class="form-control divbox1"  style="background-image: url('img/fabric.png')"></button>
+                            </div>
+                        </div>
+                        
+                        <div id="sideFabSel">
+                        <div class="form-control divbox"><a>Side Fabric Selection</a></div>
+
+                            <div>
+                                <input type="radio" name="level2" value="D0" id="D2" onchange="item.mtlDependants.push(item.sideOption); activeOption=item.sideOption; showFabOpt('side', false); selectSwatch();"/>
+                                <label for="D2">Match Front Fabric</label>
+                            </div>
+                            <input type="radio" name="level2" value="D1" id="D3" onchange="item.mtlDependants = item.mtlDependants.filter(dep => dep !== item.sideOption); showFabOpt('side', this.checked);"/>
+                            <label for="D3">Different Side Fabric</label>
+                            <div id="_sel-side-fab" style="display: none;">
+                                <button class="form-control divbox1" data-toggle="modal" data-target=".bd-example-modal-lg" onClick="activeOption=item.sideOption; $('#fabric-modal').modal('toggle'); activeParam = 'sideOption';" >
+                                    <span class="glyphicon glyphicon-th"></span>&nbsp<a>Choose different fabric</a>
+                                </button>
+                                <button id="fabricColorDisplaysideOption" class="form-control divbox1"  style="background-image: url('img/fabric.png')"></button>
+                            </div>
+                        </div>
+                          <!-- <button class="form-control divbox1"><a>Optimal</a></button> -->
+                          <!-- <button class="form-control divbox1" style=" background-color: white;"><a>Create Custome Size <span class="glyphicon glyphicon-plus" style="float: right; padding-top: 0.5vw;"></span></a></button> -->
+                      
 
                 </div>
                 <!-- style section -->
@@ -282,7 +338,7 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
                             <input type="radio" name="welting" onchange="toggleChild('welting', true)"><label>	Double Welting</label>
                             <div class="sub1"> 
                             <div>
-                                <input type="radio" name="level1" value="D0" id="D0" onchange="activeOption='welting'; selectSwatch();"/>
+                                <input type="radio" name="level1" value="D0" id="D0" onchange="item.mtlDependants.push(item.weltOption); activeOption=item.weltOption; selectSwatch();"/>
                                 <label for="D0">Match Main Fabric</label>
                             </div>
                             <div>
@@ -291,7 +347,7 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
                                 <div class="sub3"> 
                                 
                                     <div>
-                                        <input class="form-control divbox1" data-toggle="modal" data-target=".bd-example-modal-lg" onClick="activeOption=item.activeOption; $('#fabric-modal').modal('toggle')" value="Choose Different Fabric">
+                                        <input class="form-control divbox1" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="item.mtlDependants = item.mtlDependants.filter(dep => dep !== item.weltOption); activeOption=item.weltOption; $('#fabric-modal').modal('toggle'); activeParam = 'weltOption';" value="Choose Different Fabric">
                                         <label for="D1"></label>
                                         
                                         </div>
@@ -360,12 +416,17 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
 
                         <div class="form-control divbox" ><a >Fabric Ties</a></div>
                         <button class="form-control divbox1" >
-                            <img src="img/nonetie.png" class="img-responsive" width="100">
+                            <img src="img/nonetie.png" class="img-responsive" width="80">
                             <input type="radio" name="tie" oninput="toggleChild(['tie1', 'tie2', 'tie3', 'tie4'])"><label>None</label>
-                            <img src="img/standard.png" class="img-responsive" width="100">
+                            <img src="img/standard.png" class="img-responsive" width="80">
                             <input type="radio" name="tie" oninput="toggleChild(['tie1', 'tie2', 'tie3', 'tie4']); toggleChild(['tie1', 'tie2'], true);"><label>	Standard</label>
-                            <img src="img/double.png" class="img-responsive" width="100">
+                            <img src="img/double.png" class="img-responsive" width="80">
                             <input type="radio" name="tie" oninput="toggleChild(['tie1', 'tie2', 'tie3', 'tie4'], true);"><label>	Double</label>
+                            
+                            <img src="img/Icons/ZIPPER.png" class="img-responsive" width="80">
+                            <input type="checkbox" name="zip"><label>	Zipper</label>
+                            <img src="img/Icons/Button.png" class="img-responsive" width="80">
+                            <input type="checkbox" name="tie"><label>	Button</label>
                             <!-- <img src="img/side.png" class="img-responsive" width="100">
                             <input type="radio" name="tie"><label>Side</label>
                             <img src="img/inset.png" class="img-responsive" width="100">
@@ -383,32 +444,36 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
              <div class="bhoechie-tab-content active text-center" >
 
                  <div class="form-group" style="font-size: 0.8rem; background-color: white;">
-                     <div class="btn-group ">
+                     <div class="btn-group " style="display: none;">
                          <button>Side</button>
                             <select name="children" id="children"></select>
                      </div>
                      <div class="btn-group ">
                         <button>View</button>
                            <select oninput="setAnimation(ViewAngles[this.value], 60, false)">
-                                <option value="front">Front</option>
+                                <option value="front" selected>Front</option>
                                 <option value="top">Top</option>
                                 <option value="right">Right</option>
                                 <option value="left">Left</option>
+                                <option value="bottom">Bottom</option>
                            </select>
                     </div>
 
                  </div>
                  
              </div>
-             <div class="bhoechie-tab-content active text-center" >
+             <!-- <div class="bhoechie-tab-content active text-center" >
 
                  <div class="form-group" style="font-size: 0.8rem; background-color: white;">
                      <div class="btn-group ">
                          <input type="range" min=-3.142 max=3.142 step="0.1" id="rotation">
                      </div>
+                     <div class="btn-group ">
+                        <input type="range" min=-100 max=100 step="0.1" oninput="camera.zoom = 1 + this.value/100; camera.updateProjectionMatrix();">
+                    </div>
 
                  </div>
-             </div>
+             </div> -->
              <div class="bhoechie-tab-content active text-center" >
                 <canvas id="c"></canvas>
              </div>
@@ -457,8 +522,16 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
     <script src="orbitcontrolfake.js"></script>
     <script src="inventory.js"></script>
 <script src="script.js"></script>
+<script src="buildCustomise.js"></script>
 <script type="text/javascript">
+
+    function showFabOpt(el, bool) {
+        console.log(document.getElementById(el));
+        document.getElementById("_sel-" + el + "-fab").style.display = bool ? "block" : "none";
+    }
+
   $(document).ready(function() {
+
     $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
         e.preventDefault();
         $(this).siblings('a.active').removeClass("active");

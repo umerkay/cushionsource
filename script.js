@@ -12,8 +12,8 @@ const MODEL_PATH = "models/" + (item.id + ".glb" || "pillow.glb");
 var activeOption = item.activeOption || "seat";
 var loaded = false;
 
-// const BACKGROUND_COLOR = 0xffffff;
-const BACKGROUND_COLOR = 0xf1f1f1;
+const BACKGROUND_COLOR = 0xffffff;
+// const BACKGROUND_COLOR = 0xf1f1f1;
 // Init the scene
 const scene = new THREE.Scene();
 // Set background
@@ -93,6 +93,7 @@ loader.load(
     }
 
     buildChildren(item);
+    item.mtlDependants = item.mtlDependants || [];
 
     // Add the model to the scene
     theModel.traverse(function (child) {
@@ -101,6 +102,9 @@ loader.load(
       }
     });
     scene.add(theModel);
+    scale = item.scale || 1;
+    theModel.scale.set(scale, scale, scale);
+    setAnimation(ViewAngles[item.view || "top"], 60, false);
 
     // Remove the loader
     LOADER.remove();
@@ -112,7 +116,6 @@ loader.load(
 );
 
 function toggleChild(childID, toggle = false) {
-  console.log(childID);
   if (childID instanceof Array) {
     childID.forEach((_childID) =>
       theModel.traverse((child) => {
@@ -208,6 +211,7 @@ const ViewAngles = {
   front: [0, 2 * Math.PI, 0],
   left: [0, Math.PI / 2, 0],
   right: [0, -Math.PI / 2, 0],
+  bottom: [-Math.PI / 2, 0, 0],
 };
 
 let animRotate = {
@@ -242,7 +246,7 @@ function setAnimation(angles, frames = 120, add = true) {
 const rotation = (e) => {
   theModel.rotation.y = e.target.value;
 };
-document.querySelector("#rotation").addEventListener("input", rotation);
+// document.querySelector("#rotation").addEventListener("input", rotation);
 
 animate();
 
@@ -320,11 +324,12 @@ for (const swatch of swatches) {
   swatch.addEventListener("click", selectSwatch);
 }
 
-let _selectedSwatch = "FFFFFF";
+let _selectedSwatchMain = "FFFFFF";
+let activeParam;
 
 function selectSwatch(e) {
-  let color = e ? colors[parseInt(e.target.dataset.key)] : _selectedSwatch;
-  _selectedSwatch = color;
+  let color = e ? colors[parseInt(e.target.dataset.key)] : _selectedSwatchMain;
+  if (activeParam === "frontOption") _selectedSwatchMain = color;
   let new_mtl;
 
   if (color.texture) {
@@ -347,13 +352,39 @@ function selectSwatch(e) {
 
   setMaterial(theModel, activeOption, new_mtl);
 
-  const display = document.getElementById("fabricColorDisplay");
-  if (color.texture) {
-    display.style.backgroundImage = "url(" + color.texture + ")";
-  } else {
-    display.style.background = "#" + color.color;
+  const display = document.getElementById(
+    "fabricColorDisplay" + (activeParam || "")
+  );
+  if (display) {
+    if (color.texture) {
+      display.style.backgroundImage = "url(" + color.texture + ")";
+    } else {
+      display.style.background = "#" + color.color;
+    }
   }
+
+  // if (activeParam === "frontOption" && matchWeltingFabric === true) {
+  //   activeOption = "welting";
+  //   activeParam = "";
+  //   selectSwatch(e);
+  //   activeParam = "frontOption";
+  //   activeOption = item.activeOption;
+  // }
+
+  console.log(activeParam, activeOption);
+  if (activeParam === "frontOption" && item.mtlDependants) {
+    item.mtlDependants.forEach((dep) => {
+      activeOption = dep;
+      activeParam = "";
+      selectSwatch(e);
+      console.log(dep);
+    });
+    activeOption = item.activeOption;
+  }
+  activeParam = "";
 }
+
+let matchWeltingFabric = false;
 
 function setMaterial(parent, type, mtl) {
   parent.traverse((o) => {

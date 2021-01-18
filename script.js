@@ -44,10 +44,10 @@ camera.position.x = 0;
 camera.position.y = -1;
 
 // Initial material
-// const INITIAL_MTL = new THREE.MeshPhongMaterial({
-//   color: 0xf1f100,
-//   shininess: 10,
-// });
+const INITIAL_MTL = new THREE.MeshPhongMaterial({
+  color: 0xf1f100,
+  shininess: 10,
+});
 
 // const INITIAL_MAP = [
 //   { childID: "Mesh_0", mtl: INITIAL_MTL },
@@ -105,6 +105,7 @@ loader.load(
     scale = item.scale || 1;
     theModel.scale.set(scale, scale, scale);
     setAnimation(ViewAngles[item.view || "top"], 60, false);
+    document.getElementById("selectView").value = item.view || "top";
 
     // Remove the loader
     LOADER.remove();
@@ -147,12 +148,12 @@ function initColor(parent, type, mtl) {
 
 // Add lights
 var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.61);
-hemiLight.position.set(0, 50, 0);
+hemiLight.position.set(50, 50, 0);
 // Add hemisphere light to scene
 scene.add(hemiLight);
 
 var dirLight = new THREE.DirectionalLight(0xffffff, 0.54);
-dirLight.position.set(-8, 12, 8);
+dirLight.position.set(-8, 0, 8);
 dirLight.castShadow = true;
 dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
 // Add directional Light to scene
@@ -212,6 +213,7 @@ const ViewAngles = {
   left: [0, Math.PI / 2, 0],
   right: [0, -Math.PI / 2, 0],
   bottom: [-Math.PI / 2, 0, 0],
+  perspective: [Math.PI / 8, -Math.PI / 8, 0],
 };
 
 let animRotate = {

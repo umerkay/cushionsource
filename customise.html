@@ -342,7 +342,7 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
                     <div class="form-control divbox" ><a>Welting</a></div>
                     <button class="form-control divbox1" ><a>Welting Option</a><p style="color: red;">Measurements do not include the thickness of welting, which is approximately 1/4".</p>
                         <span><img src="img/doublewelting.png" class="img-responsive" style="width: auto;">
-                            <input type="radio" name="welting" onchange="toggleChild('welting', true)"><label>	Double Welting</label>
+                            <input type="radio" name="welting" onchange="toggleChild(item.weltOption, true)"><label>	Double Welting</label>
                             <div class="sub1"> 
                             <div>
                                 <input type="radio" name="level1" value="D0" id="D0" onchange="item.mtlDependants.push(item.weltOption); activeOption=item.weltOption; selectSwatch();"/>
@@ -363,7 +363,7 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
                         </div>
                             <img src="img/nowelting.png" class="img-responsive"></span>
 
-                        <input type="radio" name="welting" onchange="toggleChild('welting', false)"><label>No Welting</label>
+                        <input type="radio" name="welting" onchange="toggleChild(item.weltOption, false)"><label>No Welting</label>
 
                     </button>
                    </div>
@@ -465,12 +465,14 @@ text-decoration: none; color: #000000; font-size: 11px; font-weight: 800;
                      </div>
                      <div class="btn-group ">
                         <button>View</button>
-                           <select oninput="setAnimation(ViewAngles[this.value], 60, false)">
-                                <option value="front" selected>Front</option>
+                           <select id="selectView" oninput="setAnimation(ViewAngles[this.value], 60, false)">
+                                <!-- <option value="" selected></option> -->
+                                <option value="front">Front</option>
                                 <option value="top">Top</option>
                                 <option value="right">Right</option>
                                 <option value="left">Left</option>
                                 <option value="bottom">Bottom</option>
+                                <option value="perspective">Perspective</option>
                            </select>
                     </div>
 

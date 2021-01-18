@@ -253,10 +253,10 @@ const colors = [
   },
 ];
 
-const INITIAL_MTL = new THREE.MeshPhongMaterial({
-  color: 0xf1f1f1,
-  shininess: 10,
-});
+// const INITIAL_MTL = new THREE.MeshPhongMaterial({
+//   color: 0xf1f1f1,
+//   shininess: 10,
+// });
 
 const INITIAL_MTL_BLACK = new THREE.MeshPhongMaterial({
   color: 0x000000,
@@ -413,7 +413,7 @@ const items = [
     id: "fixed/pillowBolster",
     name: "Bolster Pillow",
     scale: 3,
-    view: "front",
+    view: "top",
     activeOption: "pillow",
     frontOption: "pillow",
     backOption: "end",
@@ -424,13 +424,40 @@ const items = [
     ],
   },
   {
+    id: "fixed/pillowCube",
+    name: "Cube Pillow",
+    scale: 1,
+    view: "front",
+    activeOption: "pillow",
+    frontOption: "pillow",
+    childList: [{ childID: "pillow", editable: true, visible: true }],
+  },
+  {
+    id: "fixed/pillowPyramid",
+    name: "Pyramid Pillow",
+    scale: 1,
+    view: "front",
+    activeOption: "pillow",
+    frontOption: "pillow",
+    childList: [{ childID: "pillow", editable: true, visible: true }],
+  },
+  {
+    id: "fixed/pillowSphere",
+    name: "Sphere Pillow",
+    scale: 1,
+    view: "front",
+    activeOption: "pillow",
+    frontOption: "pillow",
+    childList: [{ childID: "pillow", editable: true, visible: true }],
+  },
+  {
     name: "--- CUSHIONS ---",
   },
   {
     id: "cushions/windowSeatCushion",
     name: "Window Seat Cushion",
     scale: 1,
-    view: "front",
+    view: "top",
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -443,7 +470,7 @@ const items = [
     id: "cushions/sofaCushionSeatSingle",
     name: "Sofa Cushions Seat Single",
     scale: 1,
-    view: "front",
+    view: "top",
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -456,7 +483,7 @@ const items = [
     id: "cushions/sofaCushionSeatDouble",
     name: "Sofa Cushions Seat Double",
     scale: 1,
-    view: "front",
+    view: "top",
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -469,7 +496,7 @@ const items = [
     id: "cushions/sofaCushionSeatTriple",
     name: "Sofa Cushions Seat Triple",
     scale: 1,
-    view: "front",
+    view: "top",
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -496,6 +523,7 @@ const items = [
     name: "Sofa Cushions Set Double",
     scale: 1,
     view: "front",
+
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -509,6 +537,7 @@ const items = [
     name: "Sofa Cushions Set Triple",
     scale: 1,
     view: "front",
+
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -521,7 +550,7 @@ const items = [
     id: "cushions/frenchCushion",
     name: "French Cushion",
     scale: 1,
-    view: "front",
+    view: "top",
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -534,7 +563,7 @@ const items = [
     id: "cushions/customSeatCushionSquared",
     name: "Custom Cushion Seat Squared",
     scale: 1,
-    view: "front",
+    view: "top",
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -547,7 +576,7 @@ const items = [
     id: "cushions/customSeatCushionCircular",
     name: "Custom Cushion Sear Circular",
     scale: 0.05,
-    view: "front",
+    view: "top",
     activeOption: "cushion",
     frontOption: "cushion",
     weltOption: "welting",
@@ -564,7 +593,7 @@ let sample = {
   hasFlang: false,
   //render details
   scale: 3,
-  view: "front",
+  view: "top",
   //feature details
   customisations: [
     {
